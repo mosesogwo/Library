@@ -1,15 +1,15 @@
 
 const books = [];
 class Book {
-  constructor(title, author, pages){
-      this.title = title;
-      this.author = author;
-      this.pages = pages;
-      this.status = false;
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = false;
   }
 
-  changeStatus(){
-      this.status = !this.status;
+  changeStatus() {
+    this.status = !this.status;
   }
 
   addBookToBooks() {
@@ -24,37 +24,12 @@ class Book {
   }
 }
 
-// Toggle new book form
-const newBtn = document.querySelector('.new-btn');
-const newForm = document.querySelector('.new-form');
-newBtn.addEventListener('click', () => {
-  newForm.classList.toggle('hidden');
-});
-
-// Create book from form
-newForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  let title = newForm.querySelector('#title');
-  let author = newForm.querySelector('#author');
-  let pages = newForm.querySelector('#pages');
-
-  let book = new Book(title.value, author.value, pages.value);
-  book.addBookToBooks();
-
-  title.value = '';
-  author.value = '';
-  pages.value = '';
-  newForm.classList.add('hidden')
-  render();
-});
-
 // Render books
-const tableRows = document.querySelector('.table-rows')
+const tableRows = document.querySelector('.table-rows');
 function render() {
   tableRows.innerHTML = '';
   books.forEach((book, idx) => {
-    let row =
-    `<tr class="book-row" data-idx=${idx}>
+    const row = `<tr class="book-row" data-idx=${idx}>
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
@@ -65,16 +40,40 @@ function render() {
   });
 }
 
+// Toggle new book form
+const newBtn = document.querySelector('.new-btn');
+const newForm = document.querySelector('.new-form');
+newBtn.addEventListener('click', () => {
+  newForm.classList.toggle('hidden');
+});
+
+// Create book from form
+newForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const title = newForm.querySelector('#title');
+  const author = newForm.querySelector('#author');
+  const pages = newForm.querySelector('#pages');
+
+  const book = new Book(title.value, author.value, pages.value);
+  book.addBookToBooks();
+
+  title.value = '';
+  author.value = '';
+  pages.value = '';
+  newForm.classList.add('hidden');
+  render();
+});
+
 // Toggle Read Status && Remove book
 tableRows.addEventListener('click', (event) => {
   if (event.target.classList.contains('status-toggle')) {
-    const idx = event.target.parentElement.parentElement.dataset.idx;
+    const { idx } = event.target.parentElement.parentElement.dataset;
     books[idx].changeStatus();
     render();
   }
 
   if (event.target.classList.contains('del-book')) {
-    const idx = event.target.parentElement.parentElement.dataset.idx;
+    const { idx } = event.target.parentElement.parentElement.dataset;
     books.splice(idx, 1);
     render();
   }
