@@ -1,3 +1,4 @@
+/* eslint-env browser */
 
 const books = [];
 class Book {
