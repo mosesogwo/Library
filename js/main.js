@@ -33,7 +33,6 @@ newBtn.addEventListener('click', () => {
 });
 
 // Create book from form
-// const submitBtn = newForm.querySelector('.submit');
 newForm.addEventListener('submit', (event) => {
   event.preventDefault();
   let title = newForm.querySelector('#title');
@@ -47,23 +46,37 @@ newForm.addEventListener('submit', (event) => {
   author.value = '';
   pages.value = '';
   newForm.classList.add('hidden')
-  render(books);
+  render();
 });
 
 // Render books
 const tableRows = document.querySelector('.table-rows')
-function render(books) {
+function render() {
   tableRows.innerHTML = '';
-  books.forEach((book) => {
+  books.forEach((book, idx) => {
     let row =
-    `<tr>
+    `<tr data-idx=${idx}>
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
-      <td><button class="btn btn-success">${book.bookStatus()}</button></td>
-      <td><button class="btn btn-danger">Remove</button></td>
+      <td><button class="btn btn-success status-toggle">${book.bookStatus()}</button></td>
+      <td><button class="btn btn-danger del-book">Remove</button></td>
     </tr>`;
     tableRows.insertAdjacentHTML('beforeend', row);
-  });
-  
+  }); 
 }
+
+// Toggle Read Status && Remove book
+tableRows.addEventListener('click', (event) => {
+  if (event.target.classList.contains('status-toggle')){
+    let idx = event.target.parentElement.parentElement.dataset.idx;
+    books[idx].changeStatus();
+    render();
+  }
+
+  if (event.target.classList.contains('del-book')){
+    let idx = event.target.parentElement.parentElement.dataset.idx;
+    books.splice(idx, 1);
+    render();
+  }
+});
