@@ -17,11 +17,10 @@ class Book {
   }
 
   bookStatus() {
-    if(this.status === true) {
-      return 'Read'
-    } else {
-      return 'Unread'
+    if (this.status === true) {
+      return 'Read';
     }
+    return 'Unread';
   }
 }
 
@@ -55,7 +54,7 @@ function render() {
   tableRows.innerHTML = '';
   books.forEach((book, idx) => {
     let row =
-    `<tr data-idx=${idx}>
+    `<tr class="book-row" data-idx=${idx}>
       <td>${book.title}</td>
       <td>${book.author}</td>
       <td>${book.pages}</td>
@@ -69,13 +68,13 @@ function render() {
 // Toggle Read Status && Remove book
 tableRows.addEventListener('click', (event) => {
   if (event.target.classList.contains('status-toggle')) {
-    const idx = event.target.parentElement.parentElement.dataset.idx;
+    const idx = event.target.parentElement.parentElement.dataset["idx"];
     books[idx].changeStatus();
     render();
   }
 
   if (event.target.classList.contains('del-book')) {
-    const idx = event.target.parentElement.parentElement.dataset.idx;
+    const idx = event.target.parentElement.parentElement.dataset["idx"];
     books.splice(idx, 1);
     render();
   }
