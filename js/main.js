@@ -1,28 +1,28 @@
 
-let books = [];
-class Book{
-    constructor(title, author, pages){
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.status = false;
-    }
+const books = [];
+class Book {
+  constructor(title, author, pages){
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.status = false;
+  }
 
-    changeStatus(){
-        this.status = !this.status;
-    }
+  changeStatus(){
+      this.status = !this.status;
+  }
 
-    addBookToBooks() {
-      books.push(this);
-    }
+  addBookToBooks() {
+    books.push(this);
+  }
 
-    bookStatus() {
-      if(this.status === true) {
-        return 'Read'
-      } else {
-        return 'Unread'
-      }
+  bookStatus() {
+    if(this.status === true) {
+      return 'Read'
+    } else {
+      return 'Unread'
     }
+  }
 }
 
 // Toggle new book form
@@ -63,19 +63,19 @@ function render() {
       <td><button class="btn btn-danger del-book">Remove</button></td>
     </tr>`;
     tableRows.insertAdjacentHTML('beforeend', row);
-  }); 
+  });
 }
 
 // Toggle Read Status && Remove book
 tableRows.addEventListener('click', (event) => {
-  if (event.target.classList.contains('status-toggle')){
-    let idx = event.target.parentElement.parentElement.dataset.idx;
+  if (event.target.classList.contains('status-toggle')) {
+    const idx = event.target.parentElement.parentElement.dataset.idx;
     books[idx].changeStatus();
     render();
   }
 
-  if (event.target.classList.contains('del-book')){
-    let idx = event.target.parentElement.parentElement.dataset.idx;
+  if (event.target.classList.contains('del-book')) {
+    const idx = event.target.parentElement.parentElement.dataset.idx;
     books.splice(idx, 1);
     render();
   }
