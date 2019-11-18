@@ -68,13 +68,13 @@ function render() {
 // Toggle Read Status && Remove book
 tableRows.addEventListener('click', (event) => {
   if (event.target.classList.contains('status-toggle')) {
-    const idx = event.target.parentElement.parentElement.dataset["idx"];
+    const idx = event.target.parentElement.parentElement.dataset.idx;
     books[idx].changeStatus();
     render();
   }
 
   if (event.target.classList.contains('del-book')) {
-    const idx = event.target.parentElement.parentElement.dataset["idx"];
+    const idx = event.target.parentElement.parentElement.dataset.idx;
     books.splice(idx, 1);
     render();
   }
