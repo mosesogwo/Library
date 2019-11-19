@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/styles.css">
+  <title>MyLibrary</title>
+</head>
+<body>
+  <h1 class="text-center mt-4">MyLibrary</h1>
+  <div class="container new-book">
+    <button class="btn btn-primary new-btn mb-4">Add New Book</button>
+    <form class="new-form mt-4 hidden">
+      <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter title of the book">
+      </div>
+
+      <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" class="form-control" id="author" placeholder="Enter the name of the author">
+      </div>
+
+      <div class="form-group">
+          <label for="author">Pages</label>
+          <input type="number" class="form-control" id="pages" placeholder="Enter the number of pages of the book">
+      </div>
+      <button type="submit" class="btn btn-primary submit">Submit</button>
+    </form>
+  </div>
+  <div class="container library-table mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Number of pages</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class='table-rows'></tbody>
+
+    </table>
+
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
