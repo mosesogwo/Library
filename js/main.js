@@ -40,7 +40,7 @@ function render() {
   });
 }
 
-function showMessage(message, className){
+function showMessage(message, className) {
   const div = document.createElement('div');
   div.className = `alert alert-${className}`;
   div.appendChild(document.createTextNode(message));
@@ -62,10 +62,9 @@ newForm.addEventListener('submit', (event) => {
   const author = newForm.querySelector('#author');
   const pages = newForm.querySelector('#pages');
 
-  if(title.value === '' || author.value === '' || pages.value === ''){
+  if (title.value === '' || author.value === '' || pages.value === '') {
     showMessage('Please fill all fields', 'danger');
-  }
-  else{
+  } else {
     const book = new Book(title.value, author.value, pages.value);
     book.addBookToBooks();
     title.value = '';
