@@ -1,0 +1,19 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "This project is a library built with HTML, CSS and Javascript. Books can be added to the library, removed from the library and the read status of books in the library can be updated.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosesogwo/Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mosesogwo/Library/issues"
+  },
+  "homepage": "https://github.com/mosesogwo/Library#readme"
+}
