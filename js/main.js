@@ -25,7 +25,6 @@ class Book {
   }
 }
 
-// Render books
 const tableRows = document.querySelector('.table-rows');
 function render() {
   tableRows.innerHTML = '';
@@ -41,31 +40,43 @@ function render() {
   });
 }
 
-// Toggle new book form
+function showMessage(message, className){
+  const div = document.createElement('div');
+  div.className = `alert alert-${className}`;
+  div.appendChild(document.createTextNode(message));
+  const messageContainer = document.querySelector('.container');
+  const form = document.querySelector('.new-form');
+  messageContainer.insertBefore(div, form);
+  setTimeout(() => document.querySelector('.alert').remove(), 3000);
+}
+
 const newBtn = document.querySelector('.new-btn');
 const newForm = document.querySelector('.new-form');
 newBtn.addEventListener('click', () => {
   newForm.classList.toggle('hidden');
 });
 
-// Create book from form
 newForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const title = newForm.querySelector('#title');
   const author = newForm.querySelector('#author');
   const pages = newForm.querySelector('#pages');
 
-  const book = new Book(title.value, author.value, pages.value);
-  book.addBookToBooks();
-
-  title.value = '';
-  author.value = '';
-  pages.value = '';
-  newForm.classList.add('hidden');
-  render();
+  if(title.value === '' || author.value === '' || pages.value === ''){
+    showMessage('Please fill all fields', 'danger');
+  }
+  else{
+    const book = new Book(title.value, author.value, pages.value);
+    book.addBookToBooks();
+    title.value = '';
+    author.value = '';
+    pages.value = '';
+    newForm.classList.add('hidden');
+    showMessage('Book added successfully', 'success');
+    render();
+  }
 });
 
-// Toggle Read Status && Remove book
 tableRows.addEventListener('click', (event) => {
   if (event.target.classList.contains('status-toggle')) {
     const { idx } = event.target.parentElement.parentElement.dataset;
